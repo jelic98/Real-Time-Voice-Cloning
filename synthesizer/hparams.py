@@ -1,4 +1,4 @@
-from tensorflow.contrib.training import HParams
+from hparams import HParams
 
 # Default hyperparameters
 hparams = HParams(
