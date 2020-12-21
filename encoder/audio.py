@@ -44,7 +44,7 @@ def preprocess_wav(fpath_or_wav: Union[str, Path, np.ndarray],
     if webrtcvad:
         wav = trim_long_silences(wav)
     
-    return wav
+    return wav, sampling_rate
 
 
 def wav_to_mel_spectrogram(wav):
