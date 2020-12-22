@@ -17,7 +17,7 @@ def preprocess_dataset(datasets_root: Path, out_dir: Path, n_processes: int,
     dataset_root = datasets_root.joinpath(datasets_name)
     input_dirs = [dataset_root.joinpath(subfolder.strip()) for subfolder in subfolders.split(",")]
     print("\n    ".join(map(str, ["Using data from:"] + input_dirs)))
-    assert all(input_dir.exists() for input_dir in input_dirs)
+    #assert all(input_dir.exists() for input_dir in input_dirs)
     
     # Create the output directories for each output file type
     out_dir.joinpath("mels").mkdir(exist_ok=True)
@@ -230,7 +230,7 @@ def embed_utterance(fpaths, encoder_model_fpath):
     # Compute the speaker embedding of the utterance
     wav_fpath, embed_fpath = fpaths
     wav = np.load(wav_fpath)
-    wav = encoder.preprocess_wav(wav)
+    wav, _ = encoder.preprocess_wav(wav)
     embed = encoder.embed_utterance(wav)
     np.save(embed_fpath, embed, allow_pickle=False)
     
